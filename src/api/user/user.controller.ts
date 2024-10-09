@@ -4,9 +4,9 @@ import * as jwt from 'jsonwebtoken';
 
 import { ILoginRequestBody, ISignUpRequestBody } from "../../Types/request.type";
 import { IUserApiResponse } from "../../Types/response.types";
-import { signupValidation } from "../validation/user/signup.validation";
+import { signupValidation } from "./validation/signup.validation";
 import User from "../../model/user.model";
-import logInValidation from "../validation/user/login.validation";
+import logInValidation from "./validation/login.validation";
 import env_variables from "../../config/custom_env_variable";
 
 export const userSignupPostController = async (req: Request, res: Response): Promise<void> => {

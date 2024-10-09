@@ -6,8 +6,9 @@ const app: Application = express();
 const PORT: string | number = process.env.PORT || 8020;
 import setMiddlewares from './middleware/middleware';
 setMiddlewares(app);
-import setRoute from './api/routes/route';
-setRoute(app);
+
+import userRouter from './api/user/user.route';
+app.use('/api/user/', userRouter);
 
 mongoose.set('strictQuery', false);
 mongoose.connect(env_variables.db_uri).then((): void => {
