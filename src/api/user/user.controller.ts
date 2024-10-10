@@ -8,6 +8,7 @@ import { signupValidation } from "./validation/signup.validation";
 import User from "../../model/user.model";
 import logInValidation from "./validation/login.validation";
 import env_variables from "../../config/custom_env_variable";
+import { ICustomRequest } from "../../middleware/isAuthenticated.middleware";
 
 export const userSignupPostController = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -122,4 +123,27 @@ export const userLoginPostController = async (req: Request, res: Response): Prom
     }
     res.json(response);
   }
-}
+};
+
+export const userLogoutPostController = async (req: Request, res: Response): Promise<void> => {
+  const customReq = req as ICustomRequest;
+  try {
+    const response: IUserApiResponse = {
+      success: true,
+      statusCode: 200,
+      message: 'Successfully loggedout',
+      isAuthenticated: false
+    }
+    res.clearCookie('auth-jwtToken');
+    customReq.user = null;
+    res.json(response);
+  } catch (error) {
+    console.log(error);
+    const response: IUserApiResponse = {
+      success: false,
+      statusCode: 500,
+      message: 'Internal server error | Get back soon',
+    }
+    res.json(response)
+  }
+};

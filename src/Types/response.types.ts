@@ -5,7 +5,7 @@ export interface IApiResponse {
 };
 
 export interface IUserApiResponse extends IApiResponse {
-  errorDetails?: object;
+  errorDetails?: object | string;
   data?: {
     id: any;
     username: string;

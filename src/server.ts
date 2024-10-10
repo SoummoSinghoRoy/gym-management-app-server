@@ -10,6 +10,9 @@ setMiddlewares(app);
 import userRouter from './api/user/user.route';
 app.use('/api/user/', userRouter);
 
+import trainerRouter from './api/trainer/trainer.route';
+app.use('/api/trainer', trainerRouter);
+
 mongoose.set('strictQuery', false);
 mongoose.connect(env_variables.db_uri).then((): void => {
   console.log(`DB connected....`);
